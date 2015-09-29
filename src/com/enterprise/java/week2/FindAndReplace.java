@@ -3,6 +3,8 @@ package com.enterprise.java.week2;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+//import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 /**
  * Sample Find and Replace program to practice debugging, unit testing, and refactoring.
@@ -17,10 +19,13 @@ import java.util.Map;
  */
 public class FindAndReplace {
 
+
     String inputFile;
     String outputFile;
     String findReplaceFile;
+    private static Logger logger =Logger.getLogger(FindAndReplace.class);
     Map<String, String> findReplaceValues = new HashMap<>();
+
 
     public FindAndReplace(String inputFile, String outputFile, String findReplaceFile) {
         this.inputFile = inputFile;
@@ -28,6 +33,7 @@ public class FindAndReplace {
         this.findReplaceFile = findReplaceFile;
         createMapOfFindReplaceValues();
         readInputFile();
+        logger.info("MSGINFO");
     }
 
     private void createMapOfFindReplaceValues() {
@@ -64,7 +70,8 @@ public class FindAndReplace {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            logger.trace("MSG", e);
         }
     }
 
